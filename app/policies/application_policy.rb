@@ -44,7 +44,7 @@ class ApplicationPolicy
   end
 
   def destroy?
-    record_owned_by_user || user_is?('admin')
+    record_owned_by_user? || user_is?('admin')
   end
 
   def scope
