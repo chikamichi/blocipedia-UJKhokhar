@@ -4,6 +4,9 @@
       <h1><%= @wiki.title %></h1>
     </div>
     <p><%= @wiki.body %></p>
-    <%= link_to 'Edit Wiki', edit_wiki_path(@wiki.id), class: 'btn btn-success' %>
+    <%= link_to 'Edit Wiki', edit_wiki_path(@wiki.id), class: 'btn btn-success' %> <br/>
+    <%= link_to 'Delete Wiki', @wiki, class: 'btn btn-danger', 
+        method: :delete, 
+        data: { confirm: 'Are you sure you want to delete your Wiki'} %>
   </div>
 </div>
