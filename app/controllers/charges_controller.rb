@@ -24,12 +24,15 @@ class ChargesController < ApplicationController
       currency: 'usd'
     )
 
-    flash[:success] = "Your payment has been receieved. Thank you!"
-    redirect_to user_path(current_user)
+    current_user.update_attribute(:role, 'premium')
 
-    rescue Stripe::CardError => e
-      flash[:error] = e.message
-      redirect_to new_charge_path
+    flash[:success] = "Your payment has been receieved. Thank you!"
+    redirect_to root_url
+
+  rescue Stripe::CardError => e
+    current_user.update_attribute(:role, 'standard')
+    flash[:error] = e.message
+    redirect_to new_charge_path
   end
 
 end
