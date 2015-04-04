@@ -1,7 +1,8 @@
 class WikisController < ApplicationController
   def index
-    @wikis = Wiki.visible_to(current_user)
-    authorize @wikis
+    @public_wikis = Wiki.visible_to(current_user)
+    @private_wikis = Wiki.visible_to(current_user, public: false)
+    authorize @public_wikis
   end
 
   def show
