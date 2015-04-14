@@ -14,10 +14,8 @@
         <li><%= link_to 'Blocipedia', root_url %></li>
         <div class='user-info pull-right'>
           <% if current_user %>
-            Hello <%= current_user.email %>! 
-            <%= link_to edit_user_registration_path, class: 'btn btn-primary btn-sm' do %>
-              <span class="glyphicon glyphicon-user"></span>
-            <% end %>
+            Hello!
+            <%= link_to current_user.email, edit_user_registration_path %>
             <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
           <% else %>
             <%= link_to 'Sign In', new_user_session_path %>
