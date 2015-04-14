@@ -4,7 +4,8 @@ Rails.application.routes.draw do
 
   resources :wikis
 
-  resources :charges, only: [:new, :create]
+  resources :subscriptions, only: [:new, :create]
+  get '/downgrade', to: 'subscriptions#downgrade'
 
   root to: 'welcome#index'
 

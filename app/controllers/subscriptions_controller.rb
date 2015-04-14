@@ -1,4 +1,4 @@
-class ChargesController < ApplicationController
+class SubscriptionsController < ApplicationController
 
   def new
     @amount = 15_00
