@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   resources :subscriptions, only: [:new, :create]
   delete '/downgrade', to: 'subscriptions#downgrade'
 
+  authenticated :user do
+    root to: 'wikis#index', as: :authenticated_root
+  end 
+
   root to: 'welcome#index'
 
 end
