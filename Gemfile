@@ -62,3 +62,7 @@ gem 'faker'
 gem 'stripe'
 
 gem 'redcarpet'
+
+gem 'pry-rails'
+
+gem 'pry-byebug'
