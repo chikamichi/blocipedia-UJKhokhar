@@ -2,6 +2,7 @@
   <div class="media-body">
     <div class="media-heading">
       <h1><%= @wiki.title %></h1>
+      <%= public_or_private %>
     </div>
     <p><%= markdown_to_html(@wiki.body) %></p>
     <% if policy(@wiki).edit? %>
