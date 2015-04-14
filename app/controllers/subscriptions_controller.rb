@@ -21,23 +21,26 @@ class SubscriptionsController < ApplicationController
     end
 
     customer = Stripe::Customer.retrieve(current_user.customer_id)
+    return unless customer.subscriptions.data.empty?
     customer.subscriptions.create(plan: 'premium')
     current_user.update_attribute(:role, 'premium')
 
     flash[:success] = "Your payment has been receieved. Thank you!"
-    redirect_to root_url
+    redirect_to edit_user_registration_path
 
   rescue Stripe::CardError => e
     current_user.update_attribute(:role, 'standard')
     flash[:error] = e.message
-    redirect_to new_charge_path
+    redirect_to new_subscriptions_path
   end
 
   def downgrade
     customer = Stripe::Customer.retrieve(current_user.customer_id)
-    subscription = customer.subscriptions.data.first
-    customer.subscriptions.retrieve(subscription).delete
+
+    subscription_id = customer.subscriptions.data.first.id
+    customer.subscriptions.retrieve(subscription_id).delete
     current_user.update_attributes(role: 'standard')
+    redirect_to edit_user_registration_path
   end
 
 end
