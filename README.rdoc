@@ -1,3 +1,10 @@
-== blocipedia README
+== blocipedia 
 
-Wiki app
+An app that lets users view and create wikis.
+
+There are three types of users: standard, premium and admin.
+
+Users may upgrade their account to a premium account via a Stripe subscription.
+Premium users may also downgrade their account to a standard one. 
+
+Users with premium accounts may mark a wiki as private so that it will only be viewable by them or an admin.

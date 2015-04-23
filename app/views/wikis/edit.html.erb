@@ -1,4 +1,4 @@
-<h1>Edit your Wiki: <%= @wiki.title %></h1>
+<h1>Edit your Wiki</h1>
 
 <div>
   <%= form_for @wiki do |f| %>
@@ -10,11 +10,13 @@
       <%= f.label :body %>
       <%= f.text_area :body, rows: 12,  class: 'form-control'%>
     </div>
-    <div class='form-group'>
-      <%= f.label :public, class: 'checkbox' do %>
-        <%= f.check_box :public %> Public wiki
-      <% end %>
-    </div>
+    <% if policy(@wiki).make_private? %>
+      <div class='form-group'>
+        <%= f.label :public, class: 'checkbox' do %>
+          <%= f.check_box :public %> Public wiki
+        <% end %>
+      </div>
+    <% end %>
     <div class='form-group'>
       <%= f.submit "Save", class: 'btn btn-success' %>
     </div>
