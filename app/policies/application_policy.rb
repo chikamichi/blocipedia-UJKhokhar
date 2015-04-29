@@ -51,12 +51,8 @@ class ApplicationPolicy
     record.class
   end
 
-  def make_private?
-    destroy?
-  end
-
   # --------------------------- Utility methods --------------------------------
-  
+
   def record_exists?
     scope.where(:id => record.id).exists?
   end

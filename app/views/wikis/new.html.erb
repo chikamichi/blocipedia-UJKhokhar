@@ -8,7 +8,7 @@
   <%= f.label :body %>
   <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: 'Enter Wiki body'%>
 </div>
-<% if current_user.premium? %>
+<% if policy(@wiki).make_private? %>
 <div class='form-group'>
   <%= f.label :public, class: 'checkbox' do %>
     <%= f.check_box :public %> Public wiki

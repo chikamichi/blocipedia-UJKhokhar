@@ -3,6 +3,10 @@ class WikiPolicy < ApplicationPolicy
     record.public? || user.present?
   end
 
+  def make_private?
+    user_is?('premium', 'admin')
+  end
+
   class Scope
     attr_reader :user, :scope
 
